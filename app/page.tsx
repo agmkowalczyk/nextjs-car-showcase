@@ -1,7 +1,12 @@
-import { Hero, SearchBar } from '@/components'
+import { CarCard, Hero, SearchBar } from '@/components'
 import { fuels, yearsOfProduction } from '@/contants'
+import { fetchCars } from '@/utils'
 
-const Home = () => {
+const Home = async () => {
+  const allCars = await fetchCars()
+
+  const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars
+
   return (
     <main className='overflow-hidden'>
       <Hero />
@@ -15,7 +20,20 @@ const Home = () => {
         <div className='home__filters'>
           <SearchBar />
 
-          
+          {!isDataEmpty ? (
+            <section>
+              <div className='home_cars-wrapper'>
+                {allCars.map((car, key) => (
+                  <CarCard key={`${car.model}-${key}`} car={car} />
+                ))}
+              </div>
+            </section>
+          ) : (
+            <div className='home__error-container'>
+              <h2 className='text-black text-xl font-bold'>Oops, no result</h2>
+              <p>{allCars?.message}</p>
+            </div>
+          )}
         </div>
       </div>
     </main>
