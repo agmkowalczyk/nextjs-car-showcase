@@ -1,10 +1,14 @@
 import { CarCard, Hero, SearchBar } from '@/components'
 import { fuels, yearsOfProduction } from '@/contants'
 import { fetchCars } from '@/utils'
+import { FilterProps } from '@/types'
 
-const Home = async () => {
-  const allCars = await fetchCars()
-
+const Home = async ({
+  searchParams: { manufacturer, model, year, fuel, limit },
+}: {
+  searchParams: FilterProps
+}) => {
+  const allCars = await fetchCars({ manufacturer, model, year, fuel, limit })
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars
 
   return (
@@ -18,11 +22,13 @@ const Home = async () => {
         </div>
 
         <div className='home__filters'>
-          <SearchBar />
+          <SearchBar manufacturer={manufacturer} model={model} />
+
+          
 
           {!isDataEmpty ? (
             <section>
-              <div className='home_cars-wrapper'>
+              <div className='home__cars-wrapper'>
                 {allCars.map((car, key) => (
                   <CarCard key={`${car.model}-${key}`} car={car} />
                 ))}
