@@ -1,13 +1,10 @@
-import { CarCard, CustomFilter, Hero, SearchBar } from '@/components'
+import { CarCard, CustomFilter, Hero, SearchBar, ShowMore } from '@/components'
 import { fuels, yearsOfProduction } from '@/contants'
 import { fetchCars } from '@/utils'
 import { FilterProps } from '@/types'
 
-const Home = async ({
-  searchParams: { manufacturer, model, year, fuel, limit },
-}: {
-  searchParams: FilterProps
-}) => {
+const Home = async ({ searchParams }: { searchParams: FilterProps }) => {
+  const { manufacturer, model, year, fuel, limit } = searchParams
   const allCars = await fetchCars({ manufacturer, model, year, fuel, limit })
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars
 
@@ -25,17 +22,26 @@ const Home = async ({
           <SearchBar manufacturer={manufacturer} model={model} />
 
           <div className='home__filter-container'>
-            <CustomFilter title='fuel' options={fuels} />
-            <CustomFilter title='year' options={yearsOfProduction} />
+            <CustomFilter title='fuel' options={fuels} selected={fuel} />
+            <CustomFilter
+              title='year'
+              options={yearsOfProduction}
+              selected={`${year}`}
+            />
           </div>
 
           {!isDataEmpty ? (
-            <section>
+            <section className='w-full'>
               <div className='home__cars-wrapper'>
                 {allCars.map((car, key) => (
                   <CarCard key={`${car.model}-${key}`} car={car} />
                 ))}
               </div>
+
+              <ShowMore
+                pageNumber={(searchParams.limit || 10) / 10}
+                isNext={(searchParams.limit || 10) > allCars.length}
+              />
             </section>
           ) : (
             <div className='home__error-container'>
