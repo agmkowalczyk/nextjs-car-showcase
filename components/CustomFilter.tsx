@@ -7,9 +7,18 @@ import { Listbox, Transition } from '@headlessui/react'
 import { CustomFilterProps } from '@/types'
 import { updateSearchParams } from '@/utils'
 
-const CustomFilter = ({ title, options }: CustomFilterProps) => {
+const CustomFilter = ({
+  title,
+  options,
+  selected: selectedUrl,
+}: CustomFilterProps) => {
   const router = useRouter()
-  const [selected, setSelected] = useState(options[0])
+
+  const defaultOption =
+    selectedUrl && selectedUrl !== 'undefined'
+      ? options.find((el) => el.title.toLowerCase() === selectedUrl)
+      : options[0]
+  const [selected, setSelected] = useState(defaultOption)
 
   const handleUpdateParams = (e: { title: string; value: string }) => {
     const newPathname = updateSearchParams(title, e.value.toLowerCase())
@@ -27,7 +36,7 @@ const CustomFilter = ({ title, options }: CustomFilterProps) => {
       >
         <div className='relative w-fit z-10'>
           <Listbox.Button className='custom-filter__btn'>
-            <span className='block truncate'>{selected.title}</span>
+            <span className='block truncate'>{selected?.title}</span>
             <Image
               src='/chevron-up-down.svg'
               width={20}

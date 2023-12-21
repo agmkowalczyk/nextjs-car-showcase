@@ -42,6 +42,7 @@ const SearchBar = ({
 
   const updateSearchParams = (model: string, manufacturer: string) => {
     const searchParams = new URLSearchParams(window.location.search)
+    searchParams.set('limit', '10')
 
     if (model) {
       searchParams.set('model', model)
@@ -82,6 +83,7 @@ const SearchBar = ({
           type='text'
           name='model'
           value={model}
+          placeholder={!manufacturer ? 'Tiguan' : ''}
           onChange={(e) => setModel(e.target.value)}
           className='searchbar__input'
         />
