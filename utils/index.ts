@@ -9,8 +9,8 @@ export async function fetchCars(filter: FilterProps) {
     limit = 10,
   } = filter
   const headers = {
-    'X-RapidAPI-Key': '0a50e2d713msh061bde77e99fb9dp11b7cfjsnc29d93c3cffb',
-    'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com',
+    'X-RapidAPI-Key': `${process.env.API_KEY}`,
+    'X-RapidAPI-Host': `${process.env.API_HOST}`,
   }
 
   const url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&model=${model}&year=${year}&fuel_type=${fuel}&limit=${limit}`
