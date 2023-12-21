@@ -1,4 +1,4 @@
-import { CarCard, Hero, SearchBar } from '@/components'
+import { CarCard, CustomFilter, Hero, SearchBar } from '@/components'
 import { fuels, yearsOfProduction } from '@/contants'
 import { fetchCars } from '@/utils'
 import { FilterProps } from '@/types'
@@ -24,7 +24,10 @@ const Home = async ({
         <div className='home__filters'>
           <SearchBar manufacturer={manufacturer} model={model} />
 
-          
+          <div className='home__filter-container'>
+            <CustomFilter title='fuel' options={fuels} />
+            <CustomFilter title='year' options={yearsOfProduction} />
+          </div>
 
           {!isDataEmpty ? (
             <section>

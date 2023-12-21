@@ -82,7 +82,7 @@
 }
 
 .home__error-container {
-  @apply mt-16 flex justify-center items-center flex-col gap-2;
+  @apply mt-16 flex w-full justify-center items-center flex-col gap-2;
 }
 /* END: Home styles */
 
