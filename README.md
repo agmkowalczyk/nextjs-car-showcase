@@ -1,3 +1,28 @@
+# NEXT.js Car Showcase
+
+## Description
+NEXT.js Car Showcase (Next, HeadlessUI, React, TailwindCSS)
+
+<p>
+<img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" alt="next.js">
+<img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="react">
+<img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="tailwind">
+
+</p>
+
+## Live Preview
+[Click here](https://nextjs-car-showcase-teal.vercel.app)
+
+
+
+## Image
+
+![preview](https://github.com/agmkowalczyk/nextjs-car-showcase/blob/main/screenshot_nextjs-car-showcase1.png "NEXT.js Car Showcase")
+![preview](https://github.com/agmkowalczyk/nextjs-car-showcase/blob/main/screenshot_nextjs-car-showcase2.png "NEXT.js Car Showcase")
+\
+\
+\
+<br>
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
